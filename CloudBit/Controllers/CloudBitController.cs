@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Configuration;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -11,13 +12,13 @@ namespace CloudBit.Controllers
 {
     public class CloudBitController : ApiController
     {
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/trigger")]
+        [HttpGet]
+        [Route("api/trigger")]
         public string Trigger([FromUri] Request req)
         {
             try
             {
-                if (!req.AreParamsMissing())
+                if (req != null && !req.AreParamsMissing())
                 {
                     //Build the Request
                     HttpClient client = new HttpClient();
@@ -34,11 +35,11 @@ namespace CloudBit.Controllers
                         body
                     ).Result;
 
-                    return apiResponse.StatusCode.ToString();
+                    return apiResponse.StatusCode == HttpStatusCode.OK ? "Yay! We turned it on. :-)" : ConfigurationManager.AppSettings[((int)apiResponse.StatusCode).ToString()];
                 }
                 else
                 {
-                    return "Missing Parameters!";
+                    return "Looks like we didn't get everything to turn on the device :-(";
                 }
             }
             catch (Exception ex)
