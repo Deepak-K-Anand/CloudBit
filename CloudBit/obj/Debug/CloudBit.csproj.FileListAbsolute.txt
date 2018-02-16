@@ -90,7 +90,6 @@ E:\Projects\CloudBit\CloudBit\bin\Microsoft.AI.DependencyCollector.xml
 E:\Projects\CloudBit\CloudBit\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\Projects\CloudBit\CloudBit\bin\Microsoft.AI.WindowsServer.xml
 E:\Projects\CloudBit\CloudBit\bin\Microsoft.AI.Web.xml
-E:\Projects\CloudBit\CloudBit\obj\Debug\CloudBit.csprojResolveAssemblyReference.cache
 E:\Projects\CloudBit\CloudBit\obj\Debug\CloudBit.csproj.CoreCompileInputs.cache
 E:\Projects\CloudBit\CloudBit\obj\Debug\CloudBit.dll
 E:\Projects\CloudBit\CloudBit\obj\Debug\CloudBit.pdb

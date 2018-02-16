@@ -1,35 +1,45 @@
-﻿using System;
+﻿using CloudBit.Utilities;
+using Newtonsoft.Json;
+using System;
 using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
-using CloudBit.Utilities;
-using Newtonsoft.Json;
 
 namespace CloudBit.Controllers
 {
     public class CloudBitController : ApiController
     {
-        [System.Web.Http.Route("api/trigger")]
         [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/trigger")]
         public string Trigger([FromUri] Request req)
         {
             try
             {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["CloudBitAPI"]);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.littlebits.master+json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", req.Key);
+                if (!req.AreParamsMissing())
+                {
+                    //Build the Request
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["CloudBitAPIHost"]);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", req.Key);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.littlebits.master+json"));
 
-                var body = new StringContent(JsonConvert.SerializeObject(new DeviceOutput(req.Strength, req.Duration)), Encoding.UTF8, "application/json");
+                    //Construct the Body
+                    var body = new StringContent(JsonConvert.SerializeObject(new DeviceOutput(req.Strength, req.Duration)), Encoding.UTF8, "application/json");
 
-                HttpResponseMessage apiResponse = client.PostAsync(
-                    "/v2/devices/" + req.DeviceId + "/output",
-                    body
-                ).Result;
+                    //Send the Request
+                    HttpResponseMessage apiResponse = client.PostAsync(
+                        String.Format(ConfigurationManager.AppSettings["CloudBitAPIOutput"], req.DeviceId),
+                        body
+                    ).Result;
 
-                return apiResponse.StatusCode.ToString();
+                    return apiResponse.StatusCode.ToString();
+                }
+                else
+                {
+                    return "Missing Parameters!";
+                }
             }
             catch (Exception ex)
             {

@@ -14,5 +14,13 @@ namespace CloudBit.Utilities
         public string Duration { get; set; }
 
         public string Strength { get; set; }
+
+        public bool AreParamsMissing()
+        {
+            return  String.IsNullOrEmpty(this.DeviceId) ||
+                    String.IsNullOrEmpty(this.Key) ||
+                    String.IsNullOrEmpty(this.Duration) ||
+                    String.IsNullOrEmpty(this.Strength);
+        }
     }
 }
