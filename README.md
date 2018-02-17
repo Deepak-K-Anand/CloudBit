@@ -8,7 +8,13 @@ This in short is a proxy that in turn calls the CloudBit's [**Output Voltage on 
 ```http
 GET https://cloudbit.apphb.com/api/trigger?deviceid=[INSERT-DEVICE-ID]&key=[INSERT-KEY]&duration=[INSERT-DURATION]&strength=[INSERT-STRENGTH]
 ```
-Note that, actual nodes on the JSON expected by CloudBit - `{ "percent": 100, "duration_ms": 3000 }` maps to the following Query String parameters - 
+Note that, actual nodes on the JSON expected by CloudBit -
+
+```json
+{ "percent": 100, "duration_ms": 3000 }
+```
+
+maps to the following Query String parameters -
 
 ```
 percent     ⇒ strength
