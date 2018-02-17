@@ -2,6 +2,8 @@
 
 This in short is a proxy that in turn calls the CloudBit's [**Output Voltage on Device** API](http://developers.littlebitscloud.cc/#output-voltage-on-device) endpoint. The main advantage of this API is that it receives all the parameters required for the *Output voltage on device* API call such as the _Device Id_, _Access Token_, _Percent_ and _Duration_ as Query String parameters via a **GET** and then relays the information to the CloudBit API endpoint as a **POST**.
 
+Note that the _Output Voltage on Device_ API call is primarily used to send a specified amount of voltage to the **Bit** connected to the CloudBit thus triggering the connected Bit to perform the desired action.
+
 > The projects has been developed in **ASP.NET Web API** and is proudly hosted on [**AppHarbor**](https://appharbor.com/).
 
 ## Usage
