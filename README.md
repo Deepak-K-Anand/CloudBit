@@ -22,8 +22,23 @@ maps to the following Query String parameters -
 percent     ⇒ strength
 duration_ms ⇒ duration
 ```
+
+A successful request returns a text response that says - `Yay! We turned it on. :-)`
+
 ## Troubleshooting Error Codes
 Please refer [http://developers.littlebitscloud.cc/#errors](http://developers.littlebitscloud.cc/#errors) to know more about the errors returned by the API.
+
+**Error Code**|**Meaning**
+:-----:|-----
+400|**Bad Request** – Your request is badly formed
+401|**Unauthorized** – Your API key is wrong
+403|**Forbidden** – You do not have permission to access that device
+404|**Not Found** – The specified device could not be found
+405|**Method Not Allowed** – You tried to access a device with an invalid method
+406|**Not Acceptable** – You requested a format that isn’t json
+429|**Too Many Requests** – You’re requesting too many kittens! Slow down!
+500|**Internal Server Error** – We had a problem with our server. Try again later.
+503|**Service Unavailable** – We’re temporarially offline for maintanance. Please try again later.
 
 ## To Dos
 - [ ] Add an index.html to the live site with proper description as in the Readme.md
